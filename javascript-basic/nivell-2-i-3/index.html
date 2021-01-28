@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheets     -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+  <!-- Matrix canvas in body -->
+  <!-- <body onload="for(s=window.screen,w=q.width=s.width,h=q.height=s.height,m=Math.random,p=[],i=0;i<256;p[i++]=1);setInterval('9Style=\'rgba(0,0,0,.05)\'9Rect(0,0,w,h)9Style=\'#0F0\';p.map(function(v,i){9Text(String.fromCharCode(3e4+m()*33),i*10,v);p[i]=v>758+m()*1e4?0:v+10})'.split(9).join(';q.getContext(\'2d\').fill'),33)"> -->
+  
+    <div class="calculator" id="calc">
+      <div class="screen">
+        <p class="output1" data-class="previous-operand"></p>
+        <p class="display-operation" data-class="display-operation"></p>
+        <p class="output2" data-class="current-operand"></p>
+      </div>
+      <button data-num="9">9</button>
+      <button data-num="8">8</button>
+      <button data-num="7">7</button>
+      <button data-num="6">6</button>
+      <button data-num="5">5</button>
+      <button data-num="4">4</button>
+      <button data-num="3">3</button>
+      <button data-num="2">2</button>
+      <button data-num="1">1</button>
+      <button data-num="0">0</button>
+      <button data-num=".">.</button>
+
+      <div class="operators">
+        <button data-operation="divide">/</button>
+        <button data-operation="multiply">*</button>
+        <button data-operation="minus">-</button>
+        <button data-operation="plus">+</button>
+      </div>
+      <button class="clear" special-btn="C">C</button>
+      <button class="clearAll" special-btn="AC">AC</button>
+      <button class="equal" data-operation="equals">=</button>
+    </div>
+    <canvas id="q"> </canvas>
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -18,28 +18,16 @@ function calculate(preOperator, currOperator, storedOperation) {
   var num2 = parseFloat(currOperator);
   switch (storedOperation) {
     case "plus":
-        var res = num1 + num2;
-        previousOperand.innerHTML = res;
-        currentOperand.innerHTML = "";
-        displayOperation.innerHTML = "";
+      var res = num1 + num2;
       break;
     case "minus":
-        var res = num1 - num2;
-        previousOperand.innerHTML = res;
-        currentOperand.innerHTML = "";
-        displayOperation.innerHTML = "";
+      var res = num1 - num2;
       break;
     case "multiply":
-        var res = num1 * num2;
-        previousOperand.innerHTML = res;
-        currentOperand.innerHTML = "";
-        displayOperation.innerHTML = "";
+      var res = num1 * num2;
       break;
     case "divide":
-        var res = num1 / num2;
-        previousOperand.innerHTML = res;
-        currentOperand.innerHTML = "";
-        displayOperation.innerHTML = "";
+      var res = num1 / num2;
       break;
     case "equals":
         console.log("no debería pasar esto nunca, se viene foyón...");
@@ -47,14 +35,13 @@ function calculate(preOperator, currOperator, storedOperation) {
     default:
       break;
   }
-  
-  console.log("calculated");
+  return res;
 }
 
 
 function clear() {
     currentOperand.innerHTML = currentOperand.innerHTML.slice(0,-1);
-    console.log("clear");
+   
 }
 
 function allClear() {
@@ -64,9 +51,7 @@ function allClear() {
     operationSelected = "";
     storedOperation = "";
     auxOperand = "";
-    console.log("AllClear");
-}
-
+   }
 
 
 // event listeners
@@ -75,11 +60,10 @@ dataNum.forEach((el) => {
   el.addEventListener("click", () => {
     var content = el.getAttribute("data-num");
     // primero miro que no pueden haber dos puntos decimales, pongo cero a la izquerda si lo primero que se clica es un "." 
-    if (content == "." && currentOperand.innerHTML.includes(".")) {
-        console.log("ya hay un punto");
-        return;
+    if (content == "," && currentOperand.innerHTML.includes(",")) {
+      return;
     }
-    if (content == "." && currentOperand.innerHTML == "") {
+    if (content == "," && currentOperand.innerHTML == "") {
         currentOperand.innerHTML = "0.";
         return;
     }
@@ -90,18 +74,16 @@ dataNum.forEach((el) => {
 
 currentOperation.forEach((el) => {
   el.addEventListener("click", () => {
-    
     // primero miro que no puede haber operacion si el display esta vacio
     if (previousOperand.innerHTML =="" && currentOperand.innerHTML== "") {
         return
     } 
-    
     // Segundo se hace check double equals. solo sucede si se dan 2 iguales seguidos.
     // Se pasa el previousOperand y el current que se guardó como auxOperand
     if (operationSelected == "equals" && el.getAttribute("data-operation") =="equals"){
-        console.log("double sum");
+        previousOperand.innerHTML = calculate(previousOperand.innerHTML, auxOperand, storedOperation);
+        currentOperand.innerHTML = "";
         displayOperation.innerHTML = "";
-        calculate(previousOperand.innerHTML, auxOperand, storedOperation);
         return;
     }
 
@@ -132,7 +114,9 @@ currentOperation.forEach((el) => {
     }
         
     if (operationSelected == "equals"){
-        calculate(previousOperand.innerHTML,currentOperand.innerHTML, storedOperation);
+      previousOperand.innerHTML = calculate(previousOperand.innerHTML,currentOperand.innerHTML, storedOperation);
+      currentOperand.innerHTML = "";
+      displayOperation.innerHTML = "";
      
     }
     

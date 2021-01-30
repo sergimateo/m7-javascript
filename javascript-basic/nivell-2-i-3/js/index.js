@@ -7,27 +7,28 @@ const specialButtons = document.querySelectorAll("[special-btn]");
 const dataNum = document.querySelectorAll("[data-num]");
 const displayOperation = document.querySelector(".display-operation");
 
-let operationSelected = "";
-let storedOperation = "";
-let auxOperand = "";
+var operationSelected = "";
+var storedOperation = "";
+var auxOperand = "";
 
 // Functions
 
 function calculate(preOperator, currOperator, storedOperation) {
-  var num1 = parseFloat(preOperator);
-  var num2 = parseFloat(currOperator);
+  let num1 = parseFloat(preOperator);
+  let num2 = parseFloat(currOperator);
+  let res = 0;
   switch (storedOperation) {
     case "plus":
-      var res = num1 + num2;
+      res = num1 + num2;
       break;
     case "minus":
-      var res = num1 - num2;
+      res = num1 - num2;
       break;
     case "multiply":
-      var res = num1 * num2;
+      res = num1 * num2;
       break;
     case "divide":
-      var res = num1 / num2;
+      res = num1 / num2;
       break;
     case "equals":
         console.log("no debería pasar esto nunca, se viene foyón...");
@@ -58,7 +59,7 @@ function allClear() {
 
 dataNum.forEach((el) => {
   el.addEventListener("click", () => {
-    var content = el.getAttribute("data-num");
+    let content = el.getAttribute("data-num");
     // primero miro que no pueden haber dos puntos decimales, pongo cero a la izquerda si lo primero que se clica es un "." 
     if (content == "," && currentOperand.innerHTML.includes(",")) {
       return;
@@ -76,7 +77,7 @@ currentOperation.forEach((el) => {
   el.addEventListener("click", () => {
     // primero miro que no puede haber operacion si el display esta vacio
     if (previousOperand.innerHTML =="" && currentOperand.innerHTML== "") {
-        return
+        return;
     } 
     // Segundo se hace check double equals. solo sucede si se dan 2 iguales seguidos.
     // Se pasa el previousOperand y el current que se guardó como auxOperand
@@ -99,7 +100,7 @@ currentOperation.forEach((el) => {
         storedOperation = operationSelected;
         displayOperation.innerHTML = el.innerHTML;
         return;
-    };
+    }
 
     // si todo esta en orden, me preparo para obtener el nuevo currentOperand 
     if (operationSelected != "equals") {
